@@ -1,0 +1,64 @@
+.list-head{
+  height: 480rpx;
+  width: 100%;
+  background-color: #ccc;
+  position: relative;
+}
+.list-head .list-img{
+  height: 260rpx;
+  width: 260rpx;
+  position: absolute;
+  left: 50rpx;
+  top: 110rpx;
+}
+.list-head .list-img image{
+  width: 100%;
+  height: 100%;
+}
+.list-head .list-text{
+  width: 320rpx;
+  position: absolute;
+  right: 50rpx;
+  top: 160rpx;
+}
+.list-head .list-text text{
+  display: block;
+  font-size: 32rpx;
+  line-height: 50rpx;
+}
+.list-content{
+  width: 100%;
+}
+.list-content:after{
+  clear: both;
+}
+.list-content .list-item{
+  width:100%;
+  height:120rpx;
+  float: left;
+}
+.list-content .list-item .song-num{
+  width:100rpx;
+  text-align:center;
+  line-height:80rpx;
+  float:left;
+  margin-top: 20rpx;
+}
+.list-content .list-item .song-info{
+  float: left;
+  padding: 14rpx 0;
+  width: calc(100% - 100rpx);
+  border-top: 1px solid #ddd;
+}
+.list-content .list-item .song-info text{
+  font-family: 'Arial', 'Microsoft YaHei', 'SimSun';
+}
+.list-content .list-item .song-info .song-name{
+  font-size: 36rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.list-content .list-item .song-info .song-singer{
+  font-size: 30rpx;
+}

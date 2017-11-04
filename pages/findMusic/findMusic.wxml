@@ -1,0 +1,127 @@
+<view class="music-head">
+  <!--搜索框-->
+  <view class="searchBar">
+    <view class="searchBox1" style="z-index:1;" hidden="{{!inputShow}}">
+      <icon class="searchIcon" type="search" size="14"  />
+      <input class="searchInput" type="text" placeholder="搜索" value="{{inputValue}}" focus="{{inputShow}}" bindinput="keywordSearch" />
+      <view class="searchClear" wx:if="{{inputValue.length>0}}" bindtap="clearInput">
+        <icon class="searchClearIcon" type="clear" size="14" />
+      </view>
+    </view>
+    <!--focus时 搜索icon-->
+    <view class="searchBox2" style="z-index:5;" hidden="{{inputShow}}" bindtap="showItem">
+      <icon class="searchIcon" type="search" size="14"  />
+      <input class="searchInput" type="text" placeholder="搜索" value="" focus="" bindtap="" />
+    </view>
+    <!--取消按钮-->
+    <view class="searchCancel" hidden="{{!inputShow}}" bindtap="hideItem">取消</view>
+    <view class="play-item" hidden="{{inputShow}}" bindtap="bindOpenPlay">
+      <image src="../../images/play-icon.png"></image>
+    </view>
+  </view>
+</view>
+<!-- 热门搜索 -->
+<view class="search-hot" hidden="{{!inputShow || searchLoading || searchLoadingComplete}}">
+    <text class="hot-title">热门搜索</text>
+    <view class="hot-wrap">
+      <text class="hot-item hot">{{hotSearch.hotname}}</text>
+      <text class="hot-item" wx:for="{{hotSearch.hotkey}}" wx:key="unique" data-text="{{item.k}}" bindtap="hotkeySearchsong">{{item.k}}</text>
+    </view>
+  </view>
+<!-- 搜索内容 -->
+<view class="list-content" hidden="{{!inputShow}}">
+  <view class="list-item" wx:for="{{searchResList}}" wx:key="unique" id="{{index}}" bindtap="playsongTap" data-data="{{searchResList}}">
+    <view class="song-num">{{index+1}}</view>
+    <view class="song-info">
+      <text class="song-name">{{item.songname}}</text>
+      <view class="song-singer">
+        <text wx:for="{{item.singer}}" wx:key="unique">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 主体内容 -->
+<view hidden="{{inputShow}}">
+  <!--Navigation-->
+  <view class="music-nav">
+    <text wx:for="{{navbar}}" data-index="{{index}}" wx-key="unique" class="nav-text {{navIndex==index?'active':''}}" bindtap="bindNavTab">{{item}}</text>
+  </view>
+
+  <!--findMusic-->
+  <view hidden="{{navIndex!==0}}">
+    <!--swiper-->
+     <view class="swiper-container">
+      <swiper autoplay="auto" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="bindSwiperChange" class="swiper">
+        <block wx:for="{{swiperItem}}" wx:key="unique">
+          <swiper-item data-id="{{item.id}}">
+            <image src="{{item.url}}" class="img"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="swiperSpot">
+        <block wx:for="{{swiperItem}}" wx:key="unique">
+          <view class="spot{{index == swiperCurrent ? ' active' : ''}}"></view>
+        </block>
+      </view>
+    </view>  
+    <!--recommend list-->
+    <view class="recommend-box">
+      <text class="com-title">推荐新歌</text>
+      <view class="com-content">
+        <view wx:for="{{recommend}}" wx-key="{{index}}" class="com-item {{index%3==0 ? 'item-margin':''}}" id="{{index}}" data-data="{{item}}" data-sign="0" bindtap='newSongPlayTap'>
+          <view class="com-img">
+            <image src="{{item.albumpic_small}}"></image>
+          </view>
+          <text class="com-songName">{{item.songname}}</text>
+          <text class="com-singer">{{item.singername}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 电台 -->
+    <view class="recommend-box">
+      <text class="com-title">电台频道</text>
+      <view class="com-content">
+        <view wx:for="{{radioList}}" wx-key="{{index}}" class="com-item {{index%3==0 ? 'item-margin':''}}" id="{{index}}" data-data="{{item}}" data-sign="0" bindtap='newSongPlayTap'>
+          <view class="com-img">
+            <image src="{{item.picUrl}}"></image>
+          </view>
+          <text class="com-songName">{{item.Ftitle}}</text>
+          <text class="com-singer">{{item.singername}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 推荐歌单 -->
+    <view class="hotList-box">
+      <text class="com-title">推荐榜单</text>
+      <view class="com-content">
+        <view wx:for="{{topList}}" wx-key="unique" data-id="{{item.id}}" class="com-item {{index%3==0 ? 'item-margin':''}}" bindtap="getSongRankListId">
+          <view class="com-img">
+            <view class="listen-img">
+              <image src="../../images/listen-icon.png"></image>
+              <text class="listen-count">{{item.listenCount}}</text>
+            </view>
+            <image src="{{item.picUrl}}"></image>
+          </view>
+          <text class="com-songName">{{item.topTitle}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--search-->
+  <view hidden="{{navIndex!==1}}">
+    <!-- K歌热曲 -->
+    <view class="recommend-box">
+      <text class="com-title">网络热歌</text>
+      <view class="com-content">
+        <view wx:for="{{khotSong}}" wx-key="{{index}}" class="com-item {{index%3==0 ? 'item-margin':''}}" id="{{index}}" data-data="{{item}}" data-sign="0" bindtap='newSongPlayTap'>
+          <view class="com-img">
+            <image src="{{item.albumpic_small}}"></image>
+          </view>
+          <text class="com-songName">{{item.songname}}</text>
+          <text class="com-singer">{{item.singername}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

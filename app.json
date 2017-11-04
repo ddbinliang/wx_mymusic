@@ -1,0 +1,36 @@
+{
+  "pages":[
+    "pages/findMusic/findMusic",
+    "pages/playing/playing",
+    "pages/musicList/musicList",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#e45050",
+    "navigationBarTitleText": "myMusic",
+    "navigationBarTextStyle":"#fff"
+  },
+  "tabBar": {
+    "color": "#929292",
+    "selectedColor": "#e45050",
+    "borderStyle": "white",
+    "backgroundColor": "#cccccc",
+    "list": [
+      
+      {
+        "pagePath": "pages/findMusic/findMusic",
+        "iconPath": "images/tb1-off.png",
+        "selectedIconPath": "images/tb1-on.png",
+        "text": "发现音乐"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tb2-off.png",
+        "selectedIconPath": "images/tb2-on.png",
+        "text": "个人账号"
+      }
+    ]
+  }
+}

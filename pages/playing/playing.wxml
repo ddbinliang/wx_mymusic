@@ -1,0 +1,34 @@
+<view class="main-wrap">
+  <view class="songBg">
+    <image class="songBgImg" src="{{songData.songPic}}"></image>
+  </view>
+	<view class="main">
+    <!--歌曲信息-->
+    <view class="songBar">
+      <view class="songName">{{songData.songName}}</view>
+      <view class="singer">
+        <text wx:for="{{songData.singer}}" wx:key="unique">{{item.name}}</text>
+      </view>
+    </view>
+    <!--旋转图-->
+		<view class="songPic">
+			<image class="img {{ (playStatus || sliderValue>=99) ? 'pause' : ''}}" src="{{songData.songPic}}"></image>
+		</view>
+    <!--时间轴-->
+		<view class="songTimeBar">
+			<view class="progressBar">
+				<text class="startTime">{{currentTime}}</text>
+				<view class="timeBar">
+					<view class="playTime" style="transform: translateX({{sliderValue}}%)"></view>
+				</view>
+				<text class="totalTime">{{totalTime}}</text>
+			</view>
+		</view>
+    <!--上下播放暂停 控制-->
+    <view class="songControl">
+			<image class="songPrev" src="../../images/prev.png" bindtap="bindPrevSong"></image>
+      <image class="songPlay" src="{{(playStatus || sliderValue>=99)?'../../images/pause.png':'../../images/play.png'}}" bindtap="bindPlaySong"></image>
+      <image class="songNext" src="../../images/next.png" bindtap="bindNextSong"></image>
+		</view>
+	</view>
+</view>

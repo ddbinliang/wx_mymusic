@@ -1,0 +1,259 @@
+/**findMusic.wxss**/
+page{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 30rpx;
+}
+/*滚动条*/
+::-webkit-scrollbar{
+  width: 0;
+}
+.play-item{
+  width:46rpx;
+  height:44rpx;
+  float:right;
+  margin-top: 30rpx;
+  margin-right: 26rpx;
+}
+.play-item image{
+  width: 100%;
+  height: 100%;
+}
+.music-nav{
+  flex: none;
+  display: flex;
+  background: #fff;
+}
+.music-nav .nav-text{
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+.music-nav .nav-text.active{
+  color: #ff2d55;
+}
+.music-nav .nav-text.active:after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: #ff2d55;
+}
+/*swiper  banner*/
+.swiper-container{
+  width: 100%;
+  position: relative;
+  height: 300rpx;
+}
+.swiper-container image{
+  width: 100%;
+  height: 100%;
+}
+.swiper-container .swiperSpot{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+.swiper-container .swiperSpot .spot{
+  margin: 0 8rpx;
+  width: 14rpx;
+  height: 14rpx;
+  background: #fff;
+  border-radius: 14rpx;
+  transition: all 0.6s;
+}
+.swiper-container .swiperSpot .active{
+  width: 20rpx;
+  background: #ff2d55;
+}
+/*recommend list*/
+.com-title,.hotList-title{
+  display: block;
+  height:70rpx;
+  width:100%;
+  font-size:32rpx;
+  text-align:left;
+  line-height: 60rpx;
+}
+.com-title::before,.hotList-title::before{
+  content:"|";
+  color:#ff2d55;
+  width:14rpx;
+  display:inline-block;
+  margin-left:4rpx;
+}
+.com-content{
+  display: flex;
+  flex-flow:row wrap;
+}
+.item-margin{
+  margin-left: 0 !important;
+}
+.com-item{
+  width: 32%;
+  margin-left: 14rpx;
+  margin-bottom:20rpx;
+}
+.com-img{
+  position: relative;
+  width: 240rpx;
+  height: 240rpx;
+}
+.com-img image{
+  width: 100%;
+  height: 100%;
+}
+.com-img .listen-img{
+  position: absolute;
+  width: 114rpx;
+  height: 40rpx;
+  right: 4rpx;
+  top: -6rpx;
+}
+.com-img .listen-img image{
+  display: inline-block;
+  width:24rpx;
+  height:24rpx;
+  vertical-align: middle;
+}
+.com-img .listen-img .listen-count{
+  font-size:20rpx;
+  color:#fff;
+  display:inline-block;
+  margin-left: 4rpx;
+}
+.com-songName,.com-singer{
+  display: block;
+  font-size:24rpx;
+  line-height:40rpx;
+  margin-left: 10rpx;
+}
+.com-singer{
+  color:#999;
+}
+
+/*搜索框*/
+.searchBar{
+  width:100%;
+  float: left;
+  background-color:#e45050;
+}
+.searchBox1{
+  float: left;
+  width: 80%;
+  border:1px solid #ccc;
+  height:28px;
+  margin-top:10px;
+  margin-left:5px;
+  margin-bottom:10px;
+  border-radius:3px;
+  background-color: #fff;
+}
+.searchBox2{
+  float: left;
+  width:80%;
+  border:1px solid #ccc;
+  height:28px;
+  margin-top:10px;
+  margin-left:5px;
+  margin-bottom:10px;
+  border-radius:3px;
+  background-color: #fff;
+}
+.searchIcon{
+  float:left;
+  padding-top:6px;
+  padding-left:6px;
+}
+.searchInput{
+  float:left;
+  font-size:14px;
+  margin-left: 6px;
+}
+.searchClear{
+  float:right;
+}
+.searchClearIcon{
+  padding-top:6px;
+  padding-right:6px;
+}
+.searchCancel{
+  float:right;
+  width: 14%;
+  margin: 16px 0 10px 5px;
+}
+/*热门关键词*/
+.search-hot{
+  padding: 30rpx;
+}
+.hot-title{
+  display: block;
+  margin-bottom: 16rpx;
+  font-weight: bold;
+  font-size: 28rpx;
+  color: rgba(0,0,0,.6);
+}
+.hot-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+.hot-item{
+  margin-right: 28rpx;
+  margin-bottom: 20rpx;
+  padding: 0 20rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  color: #000;
+  border: 2rpx solid rgba(0,0,0,.6);
+  border-radius: 200rpx;
+}
+.hot-item.hot{
+  color: #fc4524;
+  border-color: #fc4524;
+}
+/*搜索结果*/
+.list-content{
+  width: 100%;
+}
+.list-content:after{
+  clear: both;
+}
+.list-content .list-item{
+  width:100%;
+  height:120rpx;
+  float: left;
+}
+.list-content .list-item .song-num{
+  width:100rpx;
+  text-align:center;
+  line-height:80rpx;
+  float:left;
+  margin-top: 20rpx;
+}
+.list-content .list-item .song-info{
+  float: left;
+  padding: 14rpx 0;
+  width: calc(100% - 100rpx);
+  border-top: 1px solid #ddd;
+}
+.list-content .list-item .song-info text{
+  font-family: 'Arial', 'Microsoft YaHei', 'SimSun';
+}
+.list-content .list-item .song-info .song-name{
+  font-size: 36rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.list-content .list-item .song-info .song-singer{
+  font-size: 30rpx;
+}
